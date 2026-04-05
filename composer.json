@@ -1,0 +1,13 @@
+{
+    "name": "worknflow/phpunit-guzzle-tests",
+    "type": "project",
+    "autoload": {
+        "classmap": [
+            "www/"
+        ]
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    }
+}
