@@ -6,8 +6,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 class HttpMockTest extends TestCase
 {
     public function testMockRequest(): void

@@ -1,10 +1,10 @@
 <?php
 
 use GuzzleHttp\Client;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
+#[Group('http')]
 class ApiTest extends TestCase
 {
     public function testRequest(): void

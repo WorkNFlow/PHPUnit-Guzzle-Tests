@@ -2,8 +2,6 @@
 
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 class StudentTest extends TestCase
 {
     private PDO $pdoMock;
