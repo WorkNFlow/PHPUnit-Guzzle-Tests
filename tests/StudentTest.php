@@ -26,4 +26,14 @@ class StudentTest extends TestCase
         $student = new Student($pdoMock);
         $this->assertEquals($expected, $student->getAll());
     }
+
+    public function testSaveWithMock(): void
+    {
+        $pdoMock = $this->createMock(PDO::class);
+        $stmtMock = $this->createMock(PDOStatement::class);
+        $stmtMock->expects($this->once())->method('execute')->with(['Ivan'])->willReturn(true);
+        $pdoMock->expects($this->once())->method('prepare')->with('INSERT INTO students (name) VALUES (?)')->willReturn($stmtMock);
+        $student = new Student($pdoMock);
+        $this->assertTrue($student->save('Ivan'));
+    }
 }
