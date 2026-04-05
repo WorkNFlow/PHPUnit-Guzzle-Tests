@@ -7,6 +7,14 @@ services:
       - ./:/var/www/html
     expose:
       - "9000"
+    environment:
+      DB_HOST: db
+      DB_NAME: test_db
+      DB_USER: test_user
+      DB_PASSWORD: test_pass
+    depends_on:
+      db:
+        condition: service_healthy
 
   nginx:
     image: nginx:alpine
@@ -18,3 +26,20 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
+
+  db:
+    image: mysql:8.0
+    container_name: lab8_db
+    environment:
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test_pass
+      MYSQL_ROOT_PASSWORD: rootsecret
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-prootsecret']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    expose:
+      - '3306'
